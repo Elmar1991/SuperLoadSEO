@@ -10,7 +10,7 @@
 	* @version   1.0.0
 	*/
 
-	class superLoadSEO{
+    class superLoadSEO{
 
         private function loadFile( $url ){
 
@@ -23,15 +23,26 @@
         private function fileFormat( $url ){
 
             $data = pathinfo( $url );
-            $result["extension"] = $data["extension"];
-            $result["binary"] = $this->loadFile( $url );
-            return $result;
+
+            if( isset( $data["extension"] ) ){
+
+                $result["extension"] = $data["extension"];
+                $result["binary"] = $this->loadFile( $url );
+                return $result;
+
+            }else{
+
+                $result["extension"] = false;
+                return $result;
+
+            }
 
         }
 
-        public function createFile( $url , $maxSize = NULL , $quality = 50 , $cache = 800000, $webp = 0 ){
+        public function createFile( $url , $maxSize = NULL , $quality = 50 , $cache = 800000, $lastmodified = 1577872800, $webp = 0 ){
 
             $file = $this->fileFormat( $url );
+            $lastmodified = date( "D, d M Y H:i:s" , 1577872800 )." GMT";
 
             if( $file["extension"] == "jpg" || $file["extension"] == "jpeg" || $file["extension"] == "png" ){
 
@@ -47,16 +58,17 @@
                     if( $file["extension"] == "png" ){
 
                         imagealphablending( $createImg, false );
-                        imagesavealpha( $createImg, true );	
+                        imagesavealpha( $createImg, true ); 
 
                     }
 
-                    imagecopyresized( $createImg , $loadImg , 0 , 0 , 0 , 0 , $maxSize , $newHeight , $size[0] , $size[1] );	                    
+                    imagecopyresized( $createImg , $loadImg , 0 , 0 , 0 , 0 , $maxSize , $newHeight , $size[0] , $size[1] );                        
 
                     if( $file["extension"] == "png" && $webp == 0 ){
 
                         header('Content-Type: image/png');
                         header('Cache-Control: max-age='.$cache);
+                        header('Last-Modified: '.$lastmodified);
                         imagepng( $createImg , NULL , 2 );
                         imagedestroy( $createImg );
 
@@ -66,6 +78,7 @@
 
                         header('Content-Type: image/jpeg');
                         header('Cache-Control: max-age='.$cache);
+                        header('Last-Modified: '.$lastmodified);
                         imagejpeg( $createImg , NULL , $quality );
                         imagedestroy( $createImg );
 
@@ -75,8 +88,9 @@
 
                         header('Content-Type: image/webp');
                         header('Cache-Control: max-age='.$cache);
+                        header('Last-Modified: '.$lastmodified);
                         imagewebp( $createImg , NULL , $quality );
-                        imagedestroy( $createImg );	
+                        imagedestroy( $createImg ); 
 
                     }
 
@@ -92,6 +106,7 @@
 
                 header('Content-Type: image/gif');
                 header('Cache-Control: max-age='.$cache);
+                header('Last-Modified: '.$lastmodified);
                 echo $file["binary"];
 
             }            
@@ -100,6 +115,7 @@
 
                 header('Content-Type: text/css');
                 header('Cache-Control: max-age='.$cache);
+                header('Last-Modified: '.$lastmodified);
                 echo $file["binary"];
 
             }
@@ -108,9 +124,34 @@
 
                 header('Content-Type: text/javascript');
                 header('Cache-Control: max-age='.$cache);
+                header('Last-Modified: '.$lastmodified);
                 echo $file["binary"];
 
-            }            
+            }
+
+            else if( $file["extension"] == false ){
+
+                $file_type = get_headers( $url , 1 );
+
+                if( strpos( $file_type["Content-Type"], "text/css" )  !== false  ){
+
+                        header('Content-Type: text/css');
+                        header('Cache-Control: max-age='.$cache);
+                        header('Last-Modified: '.$lastmodified);
+                        echo @file_get_contents( $url );
+
+                }
+
+                else if( strpos( $file_type["Content-Type"], "text/js" )  !== false  ){
+
+                        header('Content-Type: text/js');
+                        header('Cache-Control: max-age='.$cache);
+                        header('Last-Modified: '.$lastmodified);
+                        echo @file_get_contents( $url );
+
+                }                
+
+            }                    
 
         }
 
@@ -123,10 +164,11 @@
             if( isset( $_GET["size"] ) ){ $var_size = $_GET["size"]; }else{ $var_size = NULL; }
             if( isset( $_GET["quality"] ) ){ $var_quality = $_GET["quality"]; }else{ $var_quality = 50; }
             if( isset( $_GET["cache"] ) ){ $var_cache = $_GET["cache"]; }else{ $var_cache = 800000; }
+            if( isset( $_GET["lastmodified"] ) ){ $var_lmodif = $_GET["lastmodified"]; }else{ $var_lmodif = 1577872800; }
             if( isset( $_GET["webp"] ) ){ $var_webp = $_GET["webp"]; }else{ $var_webp = 0; }                                    
 
-            $teste = new superLoadSEO();
-            $teste->createFile( urldecode($_GET["url"]) , $var_size , $var_quality , $var_cache , $var_webp );
+            $superLoadSEO = new superLoadSEO();
+            $superLoadSEO->createFile( urldecode($_GET["url"]) , $var_size , $var_quality , $var_cache , $var_lmodif , $var_webp );
 
         }else{
 
