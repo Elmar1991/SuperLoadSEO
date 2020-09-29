@@ -22,15 +22,17 @@ Upload the *superLoadSEO.php* file to your server and replace the url pointing t
 
 ## Variables you can send:
 
-**url:** Address of the image you want to convert. This url must be url_encoded so the code don't give an error when sending the GET variable. Mandatory data*.
+**url:** Address of the image you want to convert. This url must be url_encoded so the code don't give an error when sending the GET variable. Mandatory data string*.
 
-**size:** Width in pixels of the image you want to generate. Mandatory data for JPG / JPEG / PNG images. 
+**size:** Width in pixels of the image you want to generate. Mandatory data INT for JPG / JPEG / PNG images. 
 
-**quality:** You can further reduce the weight of images by reducing their quality. Number from 0 to 100. Optional, default value 50.
+**quality:** You can further reduce the weight of images by reducing their quality. Number from 0 to 100. Optional data INT, default value 50.
 
-**cache:** Time the file will be cached. Optional, default value 800000
+**cache:** Time the file will be cached. Optional data INT, default value 800000
 
-**webp:** 0 or 1 if you want to convert your JPG / JPEG / PNG image to WEBP format. Optional, default value 0.
+**lastmodified:** You can control the file's last modified date that will be used in the cache header. Optional data TIMESTAMP, default value is 1577872800
+
+**webp:** 0 or 1 if you want to convert your JPG / JPEG / PNG image to WEBP format. Optional data INT, default value 0.
 
 ## File compatibility
 
