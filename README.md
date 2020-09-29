@@ -28,6 +28,16 @@ Upload the *superLoadSEO.php* file to your server and replace the url pointing t
 
 **webp:** 0 or 1 if you want to convert your JPG / JPEG / PNG image to WEBP format. Optional, default value 0.
 
+## File compatibility
+
+|File|Feature|Required variable|
+|----|-------|-----------------|
+|JPG|Resize, Cache, WEBP|url,size|
+|PNG|Resize, Cache, WEBP|url,size|
+|GIF|Cache|url|
+|CSS|Cache|url|
+|JS|Cache|url|
+
 ## How to use:
 
 It's very simple, in the case of an image you need to send the url and size variables:
