@@ -1,6 +1,10 @@
 # SuperLoadSEO
 Create images in the perfect size for your SEO, control the cache time of external CSS and JS files and improve your score on Gmetrix and Google PageSpeed.
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
+
+
 ## Motivation
 
 Let's suppose you have an image that loads in mobile at 245px and desktop at 475px. With **SuperLoadSEO** you will be able to easily create a copy of your original image of the exact size that your image needs to have and optionally convert it to WEBP format, saving loading time and earning points on Google Pagespeed. Uniting this tool with a few lines of Javascript you can dynamically load all the images from your website. And don't stop there, with SuperLoadSEO you are able to load external CSS and JS files with all the Cache control necessary for Google to improve your PageSpeed points.
