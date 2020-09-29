@@ -18,7 +18,9 @@ The code was written in PHP using the GD library, generally all servers have thi
 
 ## Installation
 
-Upload the *superLoadSEO.php* file to your server and replace the url pointing to that file by sending the necessary variables to dynamically create your image, CSS or Javascript files. A good idea is to create a redirect in your .htaccess to another file name such as *images* or *superload*, it is not necessary, however, it gives a special touch, it is always good to hide the PHP extension first to make the link more user friendly and also for security reasons. Let's do it, just open the .htaccess file and add this two lines:
+Upload the *superLoadSEO.php* file to your server and replace the url pointing to that file by sending the necessary variables to dynamically create your image, CSS or Javascript files. That simple!
+
+A good idea is to create a redirect in your .htaccess to another file name such as *images* or *superload*, it is not necessary, however, it gives a special touch, it is always good to hide the PHP extension first to make the link more user friendly and also for security reasons. Let's do it, just open the .htaccess file and add this two lines:
 ```
 RewriteEngine On
 RewriteRule ^superload/?$ superLoadSEO.php
