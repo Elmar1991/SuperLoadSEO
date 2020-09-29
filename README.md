@@ -3,7 +3,7 @@ Create images in the perfect size for your SEO, control the cache time of extern
 
 ## Motivation
 
-Let's suppose you have an image that loads in mobile at 245px and desktop at 475px. With SuperLoadSEO you will be able to easily create a copy of your original image of the exact size that your image needs to have and optionally convert it to WEBP format, saving loading time and earning points on Google Pagespeed. Uniting this tool with a few lines of Javascript you can dynamically load all the images from your website. And don't stop there, with SuperLoadSEO you are able to load external CSS and JS files with all the Cache control necessary for Google to improve your PageSpeed points.
+Let's suppose you have an image that loads in mobile at 245px and desktop at 475px. With **SuperLoadSEO** you will be able to easily create a copy of your original image of the exact size that your image needs to have and optionally convert it to WEBP format, saving loading time and earning points on Google Pagespeed. Uniting this tool with a few lines of Javascript you can dynamically load all the images from your website. And don't stop there, with SuperLoadSEO you are able to load external CSS and JS files with all the Cache control necessary for Google to improve your PageSpeed points.
 
 ## Some Tech specs
 
@@ -14,7 +14,7 @@ The code was written in PHP using the GD library, generally all servers have thi
 
 ## Installation
 
-Upload the superLoadSEO.php file to your server and replace the url pointing to that file by sending the necessary variables to dynamically create your image, CSS or Javascript files. A good idea is to create a redirect in htaccess to another file name such as *images*, it is not necessary, however, it gives a special touch.
+Upload the *superLoadSEO.php* file to your server and replace the url pointing to that file by sending the necessary variables to dynamically create your image, CSS or Javascript files. A good idea is to create a redirect in htaccess to another file name such as *images*, it is not necessary, however, it gives a special touch.
 
 ## Variables you can send:
 
@@ -41,7 +41,7 @@ To this: https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F47%2FPNG
 ```
 ## SuperLoadSEO and Jquery
 
-You can greatly improve the loading time of your website using SuperLoadSEO with Jquery or pure Javascript. Let's see:
+You can greatly improve the loading time of your website using **SuperLoadSEO** with Jquery or pure Javascript. Let's see:
 
 Imagine that you have an image in a sidebar and do not know the size of that image as it will depend on the size of the screen. You can create a 1px JPG in solid color just to tell Javascript its width. This will load very very fast:
 
