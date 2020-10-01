@@ -3,7 +3,6 @@
 </div>
 
 # SuperLoadSEO 
-### Version 1.2.0
 
 Create images in the perfect size for your SEO, control the cache time of external CSS and JS files and improve your score on Gmetrix and Google PageSpeed.
 
