@@ -9,10 +9,13 @@ Create images in the perfect size for your SEO, control the cache time of extern
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
-
 ## Motivation
 
 Let's suppose you have an image that loads in mobile at 245px and desktop at 475px. With **SuperLoadSEO** you will be able to easily create a copy of your original image of the exact size that your image needs to have and optionally convert it to WEBP format, saving loading time and earning points on Google Pagespeed. Uniting this tool with a few lines of Javascript you can dynamically load all the images from your website. And don't stop there, with SuperLoadSEO you are able to load external CSS and JS files with all the Cache control necessary for Google to improve your PageSpeed points.
+
+## What's new: Version 2.0.0
+- Now you can create square images, perfect for thumbnails.
+- File compatibility control, checking existing libraries on the server.
 
 ## Some Tech specs
 
@@ -41,6 +44,8 @@ http://test.com/superload?url=XXX&size=YYY
 
 **size:** Width in pixels of the image you want to generate. Mandatory data INT for JPG / JPEG / PNG images. 
 
+**square:** 0 or 1 if you want to cut the image in square format. Optional data INT, default value 0.
+
 **quality:** You can further reduce the weight of images by reducing their quality. Number from 0 to 100. Optional data INT, default value 50.
 
 **cache:** Time the file will be cached. Optional data INT, default value 800000
@@ -53,8 +58,8 @@ http://test.com/superload?url=XXX&size=YYY
 
 |File|Feature|Required variable|
 |----|-------|-----------------|
-|JPG|Resize, Cache, WEBP|url,size|
-|PNG|Resize, Cache, WEBP|url,size|
+|JPG|Resize, Square cut, Cache, WEBP|url,size|
+|PNG|Resize, Square cut, Cache, WEBP|url,size|
 |GIF|Cache|url|
 |CSS|Cache|url|
 |JS|Cache|url|
@@ -70,6 +75,34 @@ Don't forget to encode the link you want to copy to url, example:
 For this: https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png
 To this: https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F47%2FPNG_transparency_demonstration_1.png
 ```
+## Some examples:
+
+I open a 1911x1356 JPG image and convert it to a 600px square image with all the cache information in the header.
+```
+http://test.com/superLoadSEO.php?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F1%2F19%2F%25C3%2581guila_calva.jpg&size=600&square=1
+```
+
+I open a 1911x1356 JPG image and convert it to 600px width with 90% quality and with all the cache information in the header.
+```
+http://test.com/superLoadSEO.php?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F1%2F19%2F%25C3%2581guila_calva.jpg&size=600&quality=90&webp=1
+```
+
+I open a 1200x1737 JPG image and convert it to a 600px square image on WEBP format with all the cache information in the header.
+**Attention to WEBP support in the GD library installed on the server.**
+```
+http://test.com/superLoadSEO.php?url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F1a%2FTrifolium_April_2010-2.jpg%2F1200px-Trifolium_April_2010-2.jpg&size=600&square=1
+```
+## It's not just about images! More examples:
+
+Opens the Jquery library directly from the CDN with cache information and longer expiration time.
+```
+http://test.com/superLoadSEO.php?url=https%3A%2F%2Fcode.jquery.com%2Fjquery-3.5.1.js
+```
+Opens the Google Fonts link with cache information and longer expiration time.
+```
+http://test.com/superLoadSEO.php?url=https%3A%2F%2Ffonts.googleapis.com%2Fcss2%3Ffamily%3DRoboto%3Awght%40300%26display%3Dswap
+```
+
 ## SuperLoadSEO and Jquery
 
 You can greatly improve the loading time of your website using **SuperLoadSEO** with Jquery or pure Javascript. Let's see:
